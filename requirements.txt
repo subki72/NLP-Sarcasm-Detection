@@ -1,0 +1,17 @@
+# --- Web API Framework ---
+fastapi
+uvicorn
+pydantic
+
+# --- Core Machine Learning & NLP ---
+torch
+transformers
+datasets
+
+# --- Data Manipulation & Evaluation (For Notebook) ---
+pandas
+numpy
+scikit-learn
+matplotlib
+seaborn
+jupyter
