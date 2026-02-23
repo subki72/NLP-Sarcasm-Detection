@@ -1,72 +1,98 @@
-```markdown
-# Production-Ready Sarcasm Detection API
+# Production-Ready NLP Sarcasm Detection
 
 ## Overview
-This repository contains an end-to-end Natural Language Processing (NLP) pipeline for detecting sarcasm in text. The model is fine-tuned on the `distilbert-base-uncased` architecture and deployed as a RESTful API using **FastAPI**.
 
-This project demonstrates the transition from a research environment (Jupyter Notebook) to a structured, production-ready Software Engineering architecture.
+This repository contains an end-to-end Natural Language Processing (NLP) pipeline for detecting sarcasm in text. The system utilizes a fine-tuned **DistilBERT** architecture (`distilbert-base-uncased`) and is deployed as a RESTful service using the **FastAPI** framework.
+
+The project demonstrates the transition from experimental research in Jupyter Notebooks to a structured, modular, and production-ready software architecture.
 
 ## Project Structure
+
 ```text
 Sarcasm Analysis NLP/
 │
-├── data/                      # Raw datasets (JSON)
-├── models/                    # Stored model weights and checkpoints
-├── notebooks/                 # Jupyter notebooks for EDA and initial training
-├── src/                       # Production source code
-│   ├── config.py              # Centralized configuration and paths
-│   ├── inference.py           # OOP-based model inference class
-│   └── main.py                # FastAPI application
-├── requirements.txt           # Python dependencies
-└── README.md                  # Project documentation
+├── data/               # Local only: Store datasets here (e.g., Sarcasm_Headlines_Dataset_v2.json)
+├── models/             # Local only: Store fine-tuned model weights and checkpoints
+├── notebooks/          # Exploratory Data Analysis (EDA) and training experiments
+├── src/                # Core production source code
+│   ├── config.py       # Global configuration and path management
+│   ├── inference.py    # OOP-based prediction engine
+│   └── main.py         # FastAPI web application layer
+├── requirements.txt    # List of required Python libraries
+└── README.md           # Project documentation and setup guide
 
 ```
+
+---
 
 ## Model Performance
-The model was evaluated on a test set of news headlines:
 
-* **Accuracy:** 92.24%
-* **F1-Score:** 0.9192
+The model was evaluated on a held-out test set of news headlines:
 
-*Note on Domain Shift: The model performs exceptionally well on news-style text but may struggle with casual conversational sarcasm due to the nature of the training dataset.*
+| Metric | Value |
+| --- | --- |
+| **Accuracy** | 92.24% |
+| **F1-Score** | 0.9192 |
 
+> **Note on Domain Shift**: While the model exhibits high performance on news headlines, its predictive accuracy may vary on casual or conversational text due to the specific linguistic characteristics of the training dataset.
 
-## Installation & Setup
-1. **Clone the repository:**
+---
+
+## Installation and Setup
+
+### 1. Clone the Repository
+
 ```bash
-git clone [https://github.com/yourusername/sarcasm-detection-api.git](https://github.com/yourusername/sarcasm-detection-api.git)
-cd sarcasm-detection-api
-```
+git clone https://github.com/subki72/NLP-Sarcasm-Detection.git
+cd NLP-Sarcasm-Detection
 
-2. **Create a virtual environment (Conda/Venv):**
+```
+> **Note**: Please ensure you create the data/ and models/ directories locally and place the dataset/trained weights inside them as specified in the project structure
+
+### 2. Environment Management
+
+It is recommended to use a dedicated environment to manage dependencies:
+
 ```bash
 conda create -n sarcasm_detect python=3.10
 conda activate sarcasm_detect
+
 ```
 
-3. **Install dependencies:**
+### 3. Install Dependencies
+
 ```bash
 pip install -r requirements.txt
+
 ```
 
-## Running the API
-To start the FastAPI server locally, run:
+---
+
+## Running the Application
+
+To launch the FastAPI server locally, execute the following command from the project root:
 
 ```bash
 uvicorn src.main:app --reload
-```
-The API will be available at `http://127.0.0.1:8000`.
 
+```
+
+The server will initialize at `http://127.0.0.1:8000`.
+
+---
 
 ## Usage
-### Swagger UI (Interactive Testing)
-Navigate to `http://127.0.0.1:8000/docs` in your browser to interactively test the `/predict` endpoint.
 
-### Example API Request (cURL)
+### Interactive API Documentation
+
+FastAPI provides an automated Swagger UI for testing. Access it at:
+`http://127.0.0.1:8000/docs`
+
+### Example Request (cURL)
+
 ```bash
 curl -X 'POST' \
-  '[http://127.0.0.1:8000/predict](http://127.0.0.1:8000/predict)' \
-  -H 'accept: application/json' \
+  'http://127.0.0.1:8000/predict' \
   -H 'Content-Type: application/json' \
   -d '{
   "text": "Man Finally Finishes Reading Terms and Conditions Agreement"
@@ -74,7 +100,8 @@ curl -X 'POST' \
 
 ```
 
-### Example Response
+### Expected Response
+
 ```json
 {
   "status": "success",
@@ -87,4 +114,3 @@ curl -X 'POST' \
 }
 
 ```
-
