@@ -1,0 +1,23 @@
+# --- Web API Framework & Security ---
+fastapi
+uvicorn
+pydantic
+slowapi
+prometheus-client
+
+# --- Core Machine Learning & NLP ---
+torch
+transformers
+datasets
+
+# --- Testing & Quality Assurance ---
+pytest
+httpx
+
+# --- Data Manipulation & Evaluation (For Notebook) ---
+pandas
+numpy
+scikit-learn
+matplotlib
+seaborn
+jupyter

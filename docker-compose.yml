@@ -1,0 +1,24 @@
+version: "3.8"
+
+services:
+  sarcasm-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sarcasm_detection_api
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - SARCASM_MODEL_PATH=/app/models/sarcasm_model_final
+      - SARCASM_MAX_LENGTH=128
+      - PYTHONUNBUFFERED=1
+    volumes:
+      # Mount model checkpoint directory from host as read-only
+      - ./models:/app/models:ro
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; res = urllib.request.urlopen('http://127.0.0.1:8000/health'); exit(0 if res.getcode() == 200 else 1)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s

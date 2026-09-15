@@ -1,0 +1,58 @@
+# ==============================================================================
+# Comprehensive .gitignore for NLP Sarcasm Detection Microservice
+# ==============================================================================
+
+# Python bytecode & cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Testing, QA & Linting caches
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+
+# Virtual Environments
+venv/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Datasets & Training checkpoints (Local only)
+data/
+models/
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.h5
+
+# Local Environment & Secrets
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# IDE & OS Artifacts
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Build & Distribution
+build/
+dist/
+*.egg-info/
+
+# Documentation & Prompts (Local Only)
+docs/
+Prompt/
