@@ -68,3 +68,11 @@ jobs:
           file: ./Dockerfile
           push: false
           tags: sarcasm-api:ci-test
+
+      - name: Scan container image with Trivy for vulnerabilities
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'sarcasm-api:ci-test'
+          format: 'table'
+          severity: 'CRITICAL,HIGH'
+
