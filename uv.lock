@@ -1,0 +1,20 @@
+version = 1
+requires-python = ">=3.10"
+
+[[package]]
+name = "fastapi"
+version = "0.115.6"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://pypi.org/simple/fastapi/fastapi-0.115.6.tar.gz" }
+
+[[package]]
+name = "transformers"
+version = "4.47.1"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://pypi.org/simple/transformers/transformers-4.47.1.tar.gz" }
+
+[[package]]
+name = "torch"
+version = "2.5.1"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://pypi.org/simple/torch/torch-2.5.1.tar.gz" }
