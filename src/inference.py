@@ -3,11 +3,16 @@ Inference module for loading the fine-tuned DistilBERT model
 and performing sarcasm detection on raw text inputs.
 """
 
+import logging
+
 import torch
 import torch.nn.functional as F
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
 from src.config import LABEL_MAP, MAX_LENGTH, MODEL_PATH
+
+logger = logging.getLogger("sarcasm_detector")
+
 
 
 class SarcasmPredictor:
@@ -76,5 +81,5 @@ if __name__ == "__main__":
     predictor = SarcasmPredictor()
     test_sentence = "Man Finally Finishes Reading Terms and Conditions Agreement"
     result = predictor.predict(test_sentence)
-    print(f"Input: {result['text']}")
-    print(f"Output: {result['prediction']} ({result['confidence']}%)")
+    logger.info("Input: %s", result["text"])
+    logger.info("Output: %s (%s%%)", result["prediction"], result["confidence"])
