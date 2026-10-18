@@ -1,11 +1,12 @@
 # Production-Ready NLP Sarcasm Detection Microservice
 
 [![CI/CD Pipeline](https://github.com/subki72/NLP-Sarcasm-Detection/actions/workflows/ci.yml/badge.svg)](https://github.com/subki72/NLP-Sarcasm-Detection/actions)
+[![Maturity Grade: Production](https://img.shields.io/badge/Maturity%20Grade-Production%20(71.8%2F100)-success.svg)](https://github.com/subki72/NLP-Sarcasm-Detection)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.110+-009688.svg?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-EE4C2C.svg?logo=pytorch&logoColor=white)](https://pytorch.org/)
 [![Docker](https://img.shields.io/badge/Docker-Ready-2496ED.svg?logo=docker&logoColor=white)](https://www.docker.com/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 ## Overview
 
@@ -37,29 +38,37 @@ The architecture emphasizes production engineering standards: high throughput, d
 NLP-Sarcasm-Detection/
 |
 +-- .github/workflows/
-|   +-- ci.yml             # GitHub Actions automated lint, test, and Docker build
-+-- notebooks/             # Exploratory Data Analysis and training experiments
+|   +-- ci.yml                  # GitHub Actions automated lint, test, and Docker build
++-- docs/                       # Architecture diagrams & operational runbooks
++-- notebooks/                  # Exploratory Data Analysis and training experiments
 |   +-- Sarcasm_Detection.ipynb
-+-- src/                   # Core production microservice package
-|   +-- __init__.py        # Package identifier
-|   +-- config.py          # Environment-aware path and parameter configuration
-|   +-- schemas.py         # Pydantic v2 DTOs (TextInput, PredictionResponse, etc.)
-|   +-- inference.py       # OOP DistilBERT prediction engine
-|   +-- main.py            # FastAPI ASGI application, routes, and middleware
-+-- tests/                 # Automated test suite
++-- src/                        # Core production microservice package
+|   +-- __init__.py             # Package identifier
+|   +-- config.py               # Environment-aware path and parameter configuration
+|   +-- schemas.py              # Pydantic v2 DTOs (TextInput, PredictionResponse, etc.)
+|   +-- inference.py            # OOP DistilBERT prediction engine
+|   +-- main.py                 # FastAPI ASGI application, routes, and middleware
++-- tests/                      # Automated test suite
 |   +-- __init__.py
-|   +-- test_schemas.py    # Schema edge cases and sanitization tests
-|   +-- test_config.py     # Environment variable override tests
-|   +-- test_api.py        # Integration tests using TestClient and mocks
-+-- .dockerignore          # Docker build exclusions
-+-- .env.example           # Environment variable template
-+-- .gitignore             # Git exclusion rules
-+-- docker-compose.yml     # Local multi-service orchestration
-+-- Dockerfile             # Production-grade multi-stage containerfile
-+-- LICENSE                # MIT License
-+-- pyproject.toml         # Packaging metadata, Ruff linter, and Pytest config
-+-- README.md              # Project documentation
-+-- requirements.txt       # Production dependencies
+|   +-- test_schemas.py         # Schema edge cases and sanitization tests
+|   +-- test_config.py          # Environment variable override tests
+|   +-- test_api.py             # Integration tests using TestClient and mocks
++-- .dockerignore               # Docker build exclusions
++-- .env.example                # Environment variable template
++-- .gitignore                  # Git exclusion rules
++-- .pre-commit-config.yaml     # Pre-commit git hooks configuration
++-- CHANGELOG.md                # Version history and release notes
++-- CONTRIBUTING.md             # Developer contribution guidelines
++-- docker-compose.yml          # Local multi-service orchestration
++-- Dockerfile                  # Production-grade multi-stage containerfile
++-- LICENSE                     # MIT License
++-- Makefile                    # Single-command dev workflow targets
++-- pyproject.toml              # Packaging metadata, Ruff linter, and Pytest config
++-- README.md                   # Project documentation
++-- requirements-lock.txt       # Deterministic locked dependencies
++-- requirements.txt            # Production dependencies
++-- SECURITY.md                 # Vulnerability disclosure policy
++-- uv.lock                     # Fast package resolver lockfile
 ```
 
 ---
@@ -78,6 +87,30 @@ Evaluated on a held-out test set of news headlines:
 ---
 
 ## Quickstart and Installation
+
+### Single-Command Workflow (Makefile)
+
+```bash
+git clone https://github.com/subki72/NLP-Sarcasm-Detection.git
+cd NLP-Sarcasm-Detection
+
+# 1. Install dependencies:
+make install
+
+# 2. Run test suite:
+make test
+
+# 3. Check code style and linting:
+make lint
+
+# 4. Launch microservice:
+make run
+
+# 5. Build production Docker image:
+make docker-build
+```
+
+---
 
 ### Option 1: Running with Docker (Recommended)
 
@@ -199,6 +232,13 @@ ruff check src tests
 # Format code
 ruff format src tests
 ```
+
+## Security & Governance
+
+- **Vulnerability Disclosure**: Review our security reporting guidelines in [SECURITY.md](SECURITY.md).
+- **Contribution Guidelines**: Development setup and pull request etiquette in [CONTRIBUTING.md](CONTRIBUTING.md).
+- **Release Changelog**: Track semantic releases and version updates in [CHANGELOG.md](CHANGELOG.md).
+- **License**: Explicit open source licensing under the [MIT License](LICENSE).
 
 ---
 
