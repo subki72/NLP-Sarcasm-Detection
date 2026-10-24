@@ -2,7 +2,7 @@
 fastapi==0.115.6
 uvicorn==0.34.0
 pydantic==2.10.4
-slowapi==0.1.9
+slowapi==0.1.10
 prometheus-client==0.21.1
 torch==2.5.1
 transformers==4.47.1
